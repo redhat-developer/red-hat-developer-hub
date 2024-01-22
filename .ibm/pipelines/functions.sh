@@ -29,6 +29,36 @@ View [test log](${BASE_URL}/${LOGFILE}.html)
 EOF
 }
 
+save_junit() {
+    pwd
+    set -x
+    JUNIT_RESULTS_LOCATION="$(pwd)/cypress/results/junit"
+
+    ls $JUNIT_RESULTS_LOCATION
+
+    declare -a JUNIT_FILES_ARRAY
+
+    CRN=$(ibmcloud resource service-instance ${IBM_COS} --output json | jq -r .[0].guid)
+    ibmcloud cos config crn --crn "${CRN}"
+
+    echo "BEFORE FOR"
+    for JUNIT_FILE in "$JUNIT_RESULTS_LOCATION"/*; do
+        echo "JUNIT_FILE=${JUNIT_FILE}"
+        FILE_NAME=$(basename "$JUNIT_FILE")
+        FILE_PATH=$(readlink "$JUNIT_FILE")
+        echo "FILE_NAME=${FILE_NAME}"
+        echo "FILE_PATH=${FILE_NAME}"
+        ibmcloud cos upload --bucket "${IBM_BUCKET}" --key "${FILE_NAME}" --file "${FILE_PATH}" --content-type "text/xml; charset=UTF-8"
+        JUNIT_FILES_ARRAY+=("$FILE_NAME")
+        echo "JUNIT_FILES_ARRAY=${JUNIT_FILES_ARRAY}"
+    done
+
+    JSON_FILES=$(printf '%s\n' "${JUNIT_FILES_ARRAY[@]}" | jq -c -R . | jq -s .)
+    echo "JSON_FILES=${JSON_FILES}"
+    curl -X POST "${WEBHOOK_URL}" -H "Content-Type: application/json" -d "{\"junit-files\": $JSON_FILES}"
+    set +x
+}
+
 skip_if_only() {
     echo "Checking if tests need to be executed..."
     NAMES=$(git diff --merge-base --name-only main)

@@ -2,7 +2,7 @@
 
 set -e
 
-# Variáveis globais
+# Global variables
 LOGFILE="pr-${GIT_PR_NUMBER}-openshift-tests-${BUILD_NUMBER}"
 TEST_NAME="backstage-showcase Tests"
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -146,7 +146,13 @@ run_tests() {
 
   pkill Xvfb
 
+  set -x
+  pwd
+  ls
+  ls $DIR/../../e2e-tests/cypress/results/junit
+
   save_logs "${LOGFILE}" "${TEST_NAME}" ${RESULT}
+  save_junit
 
   exit ${RESULT}
 }
