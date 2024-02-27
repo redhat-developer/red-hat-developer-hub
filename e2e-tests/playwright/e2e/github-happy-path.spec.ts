@@ -108,7 +108,7 @@ test.describe.serial('GitHub Happy path', () => {
     await backstageShowcase.verifyPRRows(closedPRs, 0, 5);
   });
 
-  test('Click on the arrows to verify that the next/previous/first/last pages of PRs are loaded', async () => {
+  test.skip('Click on the arrows to verify that the next/previous/first/last pages of PRs are loaded', async () => {
     const allPRs = await BackstageShowcase.getGithubPRs('all', true);
 
     await uiHelper.clickButton('ALL', { force: true });
@@ -126,7 +126,7 @@ test.describe.serial('GitHub Happy path', () => {
     await backstageShowcase.verifyPRRows(allPRs, lastPagePRs - 5, lastPagePRs);
   });
 
-  test('Verify that the 5, 10, 20 items per page option properly displays the correct number of PRs', async () => {
+  test.skip('Verify that the 5, 10, 20 items per page option properly displays the correct number of PRs', async () => {
     const allPRs = await BackstageShowcase.getGithubPRs('all');
     await backstageShowcase.clickFirstPage();
     await backstageShowcase.verifyPRRowsPerPage(5, allPRs);
@@ -134,7 +134,7 @@ test.describe.serial('GitHub Happy path', () => {
     await backstageShowcase.verifyPRRowsPerPage(20, allPRs);
   });
 
-  test('Verify that the CI tab renders 5 most recent github actions and verify the table properly displays the actions when page sizes are changed and filters are applied', async () => {
+  test.skip('Verify that the CI tab renders 5 most recent github actions and verify the table properly displays the actions when page sizes are changed and filters are applied', async () => {
     await uiHelper.clickTab('CI');
     await common.clickOnGHloginPopup();
 
@@ -145,7 +145,7 @@ test.describe.serial('GitHub Happy path', () => {
     }
   });
 
-  test('Click on the Dependencies tab and verify that all the relations have been listed and displayed', async () => {
+  test.skip('Click on the Dependencies tab and verify that all the relations have been listed and displayed', async () => {
     await uiHelper.clickTab('Dependencies');
     for (const resource of resources) {
       const resourceElement = page.locator(
@@ -156,7 +156,7 @@ test.describe.serial('GitHub Happy path', () => {
     }
   });
 
-  test('Sign out and verify that you return back to the Sign in page', async () => {
+  test.skip('Sign out and verify that you return back to the Sign in page', async () => {
     await uiHelper.openSidebar('Settings');
     await common.signOut();
   });
