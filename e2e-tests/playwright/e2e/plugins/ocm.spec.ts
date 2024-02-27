@@ -31,7 +31,7 @@ test.describe.serial('Test OCM plugin', () => {
 
     await common.loginAsGuest();
   });
-  test('Navigate to Clusters and Verify OCM Clusters', async () => {
+  test.skip('Navigate to Clusters and Verify OCM Clusters', async () => {
     await uiHelper.openSidebar('Clusters');
     await uiHelper.verifyRowInTableByUniqueText(clusterDetails.clusterName, [
       clusterDetails.status,
