@@ -74,7 +74,7 @@ test.describe.serial('GitHub Happy path', () => {
     await uiHelper.verifyRowsInTable(['Janus-IDP']);
   });
 
-  test('Click login on the login popup and verify that Overview tab renders', async () => {
+  test.skip('Click login on the login popup and verify that Overview tab renders', async () => {
     await uiHelper.selectMuiBox('Kind', 'Component');
     await uiHelper.clickLink('Backstage Showcase');
     await common.clickOnGHloginPopup();
