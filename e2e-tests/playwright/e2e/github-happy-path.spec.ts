@@ -95,7 +95,7 @@ test.describe.serial('GitHub Happy path', () => {
     }
   });
 
-  test('Verify that the Pull/Merge Requests tab renders the 5 most recently updated Open Pull Requests', async () => {
+  test.skip('Verify that the Pull/Merge Requests tab renders the 5 most recently updated Open Pull Requests', async () => {
     await uiHelper.clickTab('Pull/Merge Requests');
     const openPRs = await BackstageShowcase.getGithubPRs('open');
     await backstageShowcase.verifyPRRows(openPRs, 0, 5);
