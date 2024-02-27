@@ -22,7 +22,7 @@ test.describe('Guest Signing Happy path', () => {
     await homePage.verifyQuickAccess('Developer Tools', 'Podman Desktop');
   });
 
-  test.skip('Verify Catalog page renders with no components', async () => {
+  test('Verify Catalog page renders with no components', async () => {
     await uiHelper.openSidebar('Catalog');
     await uiHelper.verifyHeading('My Org Catalog');
     await uiHelper.selectMuiBox('Kind', 'Component');
@@ -42,7 +42,7 @@ test.describe('Guest Signing Happy path', () => {
 
   test('Verify all 12 Software Templates appear in the Create page', async () => {
     await uiHelper.openSidebar('Create...');
-    await uiHelper.verifyHeading('Templates');
+    await uiHelper.verifyHeading('Software Templates');
     await uiHelper.waitForHeaderTitle();
 
     for (const template of templates) {
