@@ -38,8 +38,7 @@ export class HomePage {
       .filter({ hasText: quickAccessItem });
 
     // await itemLocator.waitFor({ state: 'visible', timeout: 120000 });
-
-    const maxRetries = 5;
+    const maxRetries = 50;
     let retries = 0;
 
     while (retries < maxRetries) {
@@ -47,7 +46,7 @@ export class HomePage {
         return; // If visible, exit the loop
       }
       retries++;
-      await this.page.waitForTimeout(10000); // Wait for 1 second before retrying
+      await this.page.waitForTimeout(1000); // Wait for 1 second before retrying
     }
     expect(itemLocator.isVisible()).toBeTruthy();
   }

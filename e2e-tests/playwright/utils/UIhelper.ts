@@ -86,16 +86,7 @@ export class UIhelper {
   }
 
   async waitForSideBarVisible() {
-    const maxRetries = 5;
-    let retries = 0;
-
-    while (retries < maxRetries) {
-      if (await this.page.waitForSelector('nav a')) {
-        return; // If visible, exit the loop
-      }
-      retries++;
-      await this.page.waitForTimeout(10000); // Wait for 1 second before retrying
-    }
+    await this.page.waitForSelector('nav a');
   }
 
   async openSidebar(navBarText: string) {
