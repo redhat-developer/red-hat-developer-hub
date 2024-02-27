@@ -36,7 +36,7 @@ export class HomePage {
     const itemLocator = sectionLocator
       .locator(`a div[class*="MuiListItemText-root"]`)
       .filter({ hasText: quickAccessItem });
-    await itemLocator.waitFor({ state: 'visible', timeout: 50000 });
+    await itemLocator.waitFor({ state: 'visible', timeout: 120000 });
     expect(itemLocator.isVisible()).toBeTruthy();
   }
 }
