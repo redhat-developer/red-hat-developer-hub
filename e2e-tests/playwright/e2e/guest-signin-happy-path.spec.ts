@@ -42,7 +42,7 @@ test.describe('Guest Signing Happy path', () => {
 
   test('Verify all 12 Software Templates appear in the Create page', async () => {
     await uiHelper.openSidebar('Create...');
-    await uiHelper.verifyHeading('Software Templates');
+    await uiHelper.verifyHeading('Templates');
     await uiHelper.waitForHeaderTitle();
 
     for (const template of templates) {
