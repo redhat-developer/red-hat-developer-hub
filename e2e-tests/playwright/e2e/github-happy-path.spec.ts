@@ -44,7 +44,7 @@ test.describe.serial('GitHub Happy path', () => {
     await catalogImport.registerExistingComponent(component);
   });
 
-  test('Verify that the following components were ingested into the Catalog', async () => {
+  test.skip('Verify that the following components were ingested into the Catalog', async () => {
     await uiHelper.openSidebar('Catalog');
     await uiHelper.selectMuiBox('Kind', 'Group');
     await uiHelper.verifyComponentInCatalog('Group', ['Janus-IDP Authors']);

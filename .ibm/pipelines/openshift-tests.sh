@@ -212,10 +212,10 @@ main() {
   oc version --client
   oc login --token=${K8S_CLUSTER_TOKEN} --server=${K8S_CLUSTER_URL}
 
+  install_helm
   uninstall_helmchart
   configure_namespace
-  install_helm
-
+  
   cd $DIR
   apply_yaml_files $DIR
 
