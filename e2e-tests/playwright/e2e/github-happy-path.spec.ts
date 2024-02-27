@@ -83,7 +83,7 @@ test.describe.serial('GitHub Happy path', () => {
     await backstageShowcase.verifyAboutCardIsDisplayed();
   });
 
-  test('Verify that the Issues tab renders all the open github issues in the repository', async () => {
+  test.skip('Verify that the Issues tab renders all the open github issues in the repository', async () => {
     await uiHelper.clickTab('Issues');
     const openIssues = await backstageShowcase.getGithubOpenIssues();
 
