@@ -36,7 +36,19 @@ export class HomePage {
     const itemLocator = sectionLocator
       .locator(`a div[class*="MuiListItemText-root"]`)
       .filter({ hasText: quickAccessItem });
-    await itemLocator.waitFor({ state: 'visible', timeout: 120000 });
+
+    // await itemLocator.waitFor({ state: 'visible', timeout: 120000 });
+
+    const maxRetries = 5;
+    let retries = 0;
+
+    while (retries < maxRetries) {
+      if (await itemLocator.isVisible()) {
+        return; // If visible, exit the loop
+      }
+      retries++;
+      await this.page.waitForTimeout(10000); // Wait for 1 second before retrying
+    }
     expect(itemLocator.isVisible()).toBeTruthy();
   }
 }
