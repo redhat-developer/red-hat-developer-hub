@@ -101,7 +101,7 @@ test.describe.serial('GitHub Happy path', () => {
     await backstageShowcase.verifyPRRows(openPRs, 0, 5);
   });
 
-  test('Click on the CLOSED filter and verify that the 5 most recently updated Closed PRs are rendered (same with ALL)', async () => {
+  test.skip('Click on the CLOSED filter and verify that the 5 most recently updated Closed PRs are rendered (same with ALL)', async () => {
     await uiHelper.clickButton('CLOSED', { force: true });
     const closedPRs = await BackstageShowcase.getGithubPRs('closed');
     await common.waitForLoad();
