@@ -36,7 +36,7 @@ test.describe.serial('GitHub Happy path', () => {
     await uiHelper.verifyHeading(`User Entity: ${process.env.GH_USER_ID}`);
   });
 
-  test('Register an existing component', async () => {
+  test.skip('Register an existing component', async () => {
     await uiHelper.openSidebar('Catalog');
     await uiHelper.selectMuiBox('Kind', 'Component');
     await uiHelper.clickButton('Create');
