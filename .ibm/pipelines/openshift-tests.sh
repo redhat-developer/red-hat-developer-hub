@@ -154,7 +154,7 @@ run_tests() {
 
   pkill Xvfb
 
-  save_logs "${LOGFILE}" "${TEST_NAME}" ${RESULT}
+  # save_logs "${LOGFILE}" "${TEST_NAME}" ${RESULT}
 
   exit ${RESULT}
 }
