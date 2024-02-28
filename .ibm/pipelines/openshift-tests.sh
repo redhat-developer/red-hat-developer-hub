@@ -70,6 +70,13 @@ install_helm() {
   fi
 }
 
+uninstall_helmchart() {
+  if helm list -n ${NAME_SPACE} | grep -q ${RELEASE_NAME}; then
+    echo "Chart already exists. Removing it before install."
+    helm uninstall ${RELEASE_NAME} -n ${NAME_SPACE}
+  fi
+}
+
 configure_namespace() {
   if oc get namespace ${NAME_SPACE} >/dev/null 2>&1; then
     echo "Namespace ${NAME_SPACE} already exists! refreshing namespace"
@@ -127,7 +134,6 @@ apply_yaml_files() {
   # re-apply with the updated cluster service account token
   oc apply -f $dir/auth/secrets-rhdh-secrets.yaml --namespace=${NAME_SPACE}
   oc apply -f $dir/resources/config_map/configmap-app-config-rhdh.yaml --namespace=${NAME_SPACE}
-  oc apply -f $dir/resources/config_map/configmap-rbac-policy-rhdh.yaml --namespace=${NAME_SPACE}
 }
 
 run_tests() {
@@ -148,7 +154,7 @@ run_tests() {
 
   pkill Xvfb
 
-  save_logs "${LOGFILE}" "${TEST_NAME}" ${RESULT}
+  # save_logs "${LOGFILE}" "${TEST_NAME}" ${RESULT}
 
   exit ${RESULT}
 }
@@ -206,9 +212,10 @@ main() {
   oc version --client
   oc login --token=${K8S_CLUSTER_TOKEN} --server=${K8S_CLUSTER_URL}
 
-  configure_namespace
   install_helm
-
+  uninstall_helmchart
+  configure_namespace
+  
   cd $DIR
   apply_yaml_files $DIR
 
