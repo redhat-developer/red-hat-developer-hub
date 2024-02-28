@@ -108,11 +108,15 @@ export class UIhelper {
     }
   }
 
-  async selectMuiBox(label: string, value: string) {
-    await this.page.click(`div[aria-label="${label}"]`);
+  async optionSelector(value: string) {
     const optionSelector = `li[role="option"]:has-text("${value}")`;
     await this.page.waitForSelector(optionSelector);
     await this.page.click(optionSelector);
+  }
+
+  async selectMuiBox(label: string, value: string) {
+    await this.page.click(`div[aria-label="${label}"]`);
+    await this.optionSelector(value);
   }
 
   async verifyRowsInTable(
