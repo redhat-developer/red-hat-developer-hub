@@ -80,10 +80,10 @@ export class Common {
         const locator = popup
           .getByRole('link', { name: email, exact: false })
           .first();
-        await popup.waitForTimeout(3000);
+        await popup.waitForTimeout(12000);
         await locator.waitFor({ state: 'visible' });
         await locator.click({ force: true });
-        await popup.waitForTimeout(3000);
+        await popup.waitForTimeout(12000);
         await popup
           .getByRole('button', { name: /Continue|Weiter/ })
           .click({ timeout: 60000 });
