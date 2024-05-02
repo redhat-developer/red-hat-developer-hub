@@ -59,10 +59,12 @@
     "express-promise-router": "4.1.1",
     "express-rate-limit": "7.1.5",
     "fs-extra": "11.2.0",
+    "global-agent": "^3.0.0",
     "isolated-vm": "4.6.0",
     "lodash": "4.17.21",
     "pg": "8.11.3",
     "prom-client": "15.1.0",
+    "undici": "^6.15.0",
     "winston": "3.11.0"
   },
   "devDependencies": {
