@@ -70,7 +70,7 @@ tomli>=1
 tomli>=1.2.2
 trove-classifiers
 typing-extensions
-urllib3~=2.1.0
+urllib3~=2.2.2
 watchdog==3.0.0
 wheel
 wheel==0.42.0
